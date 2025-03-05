@@ -2,7 +2,7 @@
 # the open-source pygame library
 # throughout this file
 import pygame
-import player
+from player import Player
 from constants import *
 
 def main():
@@ -11,10 +11,11 @@ def main():
 
     # clock object
     clock = pygame.time.Clock()
+    # instantiate a player object
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     dt = 0
 
-    # instantiate a player object
-    player = player.Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    
 
     # game loop
     while True:
