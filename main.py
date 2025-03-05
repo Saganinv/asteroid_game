@@ -1,6 +1,7 @@
 # this allows us to use code from
 # the open-source pygame library
 # throughout this file
+import sys
 import pygame
 from player import Player
 from constants import *
@@ -34,10 +35,18 @@ def main():
             if event.type == pygame.QUIT:
                 return
             
-        screen.fill((0, 0, 0))
         updateable.update(dt)
+
+        for asteroid in asteroids:
+            if player.collides_with(asteroid):
+                print("Game over!")
+                sys.exit()
+
+        screen.fill((0, 0, 0))
+
         for drawable in drawables:
             drawable.draw(screen)
+
         pygame.display.flip()
 
         # limit FPS to 60
