@@ -11,11 +11,15 @@ def main():
 
     # clock object
     clock = pygame.time.Clock()
+
+    # groups
+    updateable = pygame.sprite.Group()
+    drawables = pygame.sprite.Group()
+    Player.containers = (updateable, drawables)
+
     # instantiate a player object
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     dt = 0
-
-    
 
     # game loop
     while True:
@@ -24,8 +28,9 @@ def main():
                 return
             
         screen.fill((0, 0, 0))
-        player.draw(screen)
-        player.update(dt)
+        updateable.update(dt)
+        for drawable in drawables:
+            drawable.draw(screen)
         pygame.display.flip()
 
         # limit FPS to 60
