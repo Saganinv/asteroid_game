@@ -1,7 +1,8 @@
 # this allows us to use code from
 # the open-source pygame library
 # throughout this file
-import pygame # type: ignore
+import pygame
+import player
 from constants import *
 
 def main():
@@ -12,6 +13,9 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
 
+    # instantiate a player object
+    player = player.Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+
     # game loop
     while True:
         for event in pygame.event.get():
@@ -19,6 +23,7 @@ def main():
                 return
             
         screen.fill((0, 0, 0))
+        player.draw(screen)
         pygame.display.flip()
 
         # limit FPS to 60
